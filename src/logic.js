@@ -1,22 +1,42 @@
-// Filtrar personajes por casa de Hogwarts
-export function filterCharactersByHouse(characters, house) {
-  if (!house || house === 'ALL') return characters;
-  return characters.filter(char => char.house === house);
-}
+// Lógica de manipulación de datos
 
-// Filtrar por texto de búsqueda (nombre) y transformar los datos necesarios
 export function searchAndFormatCharacters(characters, query) {
-  const searchTerm = query.toLowerCase().trim();
-  
-  return characters
-    .filter(char => char.name.toLowerCase().includes(searchTerm))
-    .map(char => ({
-      id: char.id,
-      name: char.name,
-      house: char.house || 'Desconocida',
-      patronus: char.patronus || 'Desconocido',
-      // Si la API no trae imagen, ponemos una por defecto para que no rompa el diseño
-      image: char.image || 'https://via.placeholder.com/150?text=Sin+Imagen',
-      actor: char.actor || 'Desconocido'
+    const searchTerm = query.toLowerCase().trim();
+    
+    return characters
+        .filter(char => {
+            // Formateamos  cada campo para evitar errores
+            const name = (char.name || '').toLowerCase();
+            const house = (char.house || '').toLowerCase();
+            const patronus = (char.patronus || '').toLowerCase();
+            const actor = (char.actor || '').toLowerCase();
+            const species = (char.species || '').toLowerCase();
+            
+            // La varita puede venir como un objeto con madera, núcleo y longitud, o null
+            const wandWood = (char.wand && char.wand.wood) ? char.wand.wood.toLowerCase() : '';
+            const wandCore = (char.wand && char.wand.core) ? char.wand.core.toLowerCase() : '';
+            const wandText = `${wandWood} ${wandCore}`;
+
+            // Vemos si coincide con cualquiera de los campos
+            return (
+                name.includes(searchTerm) ||
+                house.includes(searchTerm) ||
+                patronus.includes(searchTerm) ||
+                actor.includes(searchTerm) ||
+                species.includes(searchTerm) ||
+                wandText.includes(searchTerm)
+            );
+        })
+        .map(char => ({
+        id: char.id,
+        name: char.name,
+        house: char.house || 'Desconocida',
+        patronus: char.patronus || 'Desconocido',
+        image: (char.image && char.image.trim() !== '') ? char.image : '/placeholder.webp',
+        actor: char.actor || 'Desconocido',
+        dateOfBirth: char.dateOfBirth || 'Desconocido',
+        species: char.species || 'Desconocida',
+        wand: char.wand ? `${char.wand.wood || ''} ${char.wand.core || ''} (${char.wand.length || ''}in)`.trim() : 'Desconocida',
+        alive: char.alive !== undefined ? (char.alive ? 'Vivo' : 'Fallecido') : 'Desconocido'
     }));
 }

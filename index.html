@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hogwarts Characters - Async Odyssey</title>
+    <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
     <header>
@@ -12,19 +13,17 @@
         <input 
           type="text" 
           id="search" 
-          placeholder="Busca por nombre (ej. Harry, Hermione...)" 
+          placeholder="Busca por nombre (ej. Harry, Ron, Hermione...)" 
           autocomplete="off"
         />
         <button id="search-btn">Buscar</button>
       </div>
     </header>
 
-    <!-- Contenedor dinámico donde se pintarán la carga, errores o tarjetas -->
     <main id="app">
-      <!-- Aquí se renderizará el contenido mediante JavaScript -->
+      <!-- Aquí se renderiza dinámicamente el contenido -->
     </main>
 
-    <!-- Script principal de tipo módulo (Vite lo procesará automáticamente) -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

@@ -1,69 +1,14 @@
-/* src/style.css */
-:root {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --text-color: #e2e8f0;
-    --accent-color: #38bdf8;
-    --accent-hover: #0ea5e9;
-    --border-color: #334155;
-    --error-color: #f87171;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    min-height: 100vh;
-    padding: 2rem;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
 }
 
 header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #38bdf8, #818cf8);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.subtitle {
-    color: #94a3b8;
-    margin-bottom: 2rem;
-}
-
-#search-form {
-    display: flex;
-    justify-content: center;
-    gap: 0.75rem;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-#search-input {
-    flex-grow: 1;
-    padding: 0.9rem 1.2rem;
-    border: 2px solid var(--border-color);
-    border-radius: 12px;
-    background-color: var(--card-bg);
-    color: var(--text-color);
-    font-size: 1rem;
-    transition: border-color 0.2s;
-}
-
-#search-input:focus {
-    outline: none;
-    border-color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 30px;
 }
 
 .controls {
@@ -71,6 +16,16 @@ h1 {
   justify-content: center;
   gap: 10px;
   margin-top: 15px;
+}
+
+#search {
+  padding: 10px 15px;
+  font-size: 1rem;
+  width: 100%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  outline: none;
 }
 
 #search-btn {
@@ -88,132 +43,151 @@ h1 {
   background-color: #357abd;
 }
 
-button {
-    padding: 0.9rem 2rem;
-    border: none;
-    background-color: var(--accent-color);
-    color: #0f172a;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: background-color 0.2s, transform 0.1s;
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-button:hover {
-    background-color: var(--accent-hover);
+.card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-button:active {
-    transform: scale(0.98);
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
-.hint {
-    margin-top: 1rem;
-    font-size: 0.85rem;
-    color: #64748b;
+.card-img-container {
+  width: 100%;
+  height: 280px;
+  background-color: #e0e0e0;
 }
 
-#stats-container {
-    max-width: 800px;
-    margin: 0 auto 2rem;
+.card-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 
-.stats-box {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 1.5rem;
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 1rem;
+.card-content {
+  padding: 15px;
 }
 
-.stats-box p {
-    color: #94a3b8;
+.card-content h2 {
+  font-size: 1.1rem;
+  margin-top: 0;
+  margin-bottom: 8px;
 }
 
-.stats-box strong {
-    color: var(--accent-color);
+.card-content p {
+  margin: 4px 0;
+  font-size: 0.85rem;
+  color: #555;
 }
 
-#results-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
+/* Modal / Vista Detallada */
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 
-.quote-card {
-    background-color: var(--card-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 16px;
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    transition: transform 0.2s, box-shadow 0.2s;
+.modal-card {
+  background: #fff;
+  width: 90%;
+  max-width: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  animation: scaleUp 0.25s ease-in-out;
 }
 
-.quote-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+@keyframes scaleUp {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
 }
 
-.quote-text {
-    font-size: 1.15rem;
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-    font-style: italic;
-    color: #f1f5f9;
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background 0.2s;
 }
 
-.quote-author {
-    font-weight: 600;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-    text-align: right;
+.close-btn:hover {
+  background: rgba(0,0,0,0.8);
 }
 
-.quote-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
+.modal-img-container {
+  width: 100%;
+  height: 300px;
+  background-color: #ddd;
 }
 
-.tag {
-    background-color: rgba(56, 189, 248, 0.15);
-    color: var(--accent-color);
-    padding: 0.25rem 0.75rem;
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    text-transform: lowercase;
+.modal-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
 }
 
-.quote-length {
-    font-size: 0.8rem;
-    color: #64748b;
-    margin-top: auto;
+.modal-info {
+  padding: 20px;
 }
 
-#status-message {
-    text-align: center;
-    font-size: 1.1rem;
-    color: #94a3b8;
-    margin-top: 2rem;
+.modal-info h2 {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 1.4rem;
+  color: #222;
 }
 
-.status-error {
-    color: var(--error-color);
-    font-weight: 600;
+.modal-info p {
+  margin: 6px 0;
+  font-size: 0.95rem;
+  color: #444;
 }
 
-.initial-message {
+.initial-message, .loading, .error, .empty {
   text-align: center;
   font-size: 1.1rem;
-  color: #777;
-  margin-top: 60px;
+  margin-top: 50px;
+  color: #666;
+}
+
+.error {
+  color: #d9534f;
 }
