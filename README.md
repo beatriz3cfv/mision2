@@ -1,4 +1,4 @@
-# Async Odyssey - Personajes de Harry Potter
+# Personajes de Harry Potter
 
 Misión M2 · Async Odyssey — Web Development I.
 
