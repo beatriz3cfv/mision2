@@ -1,11 +1,11 @@
 const appContainer = document.querySelector('#app');
 
 export function renderInitialState() {
-    appContainer.innerHTML = `<p class="initial-message">🔍 Escribe el nombre de un personaje de Harry Potter y haz clic en Buscar.</p>`;
+    appContainer.innerHTML = `<p class="initial-message">🔍 Escribe el nombre/casa de un personaje de Harry Potter y haz clic en Buscar (o Enter).</p>`;
 }
 
 export function renderLoading() {
-    appContainer.innerHTML = `<p class="loading">Cargando personajes de Hogwarts...</p>`;
+    appContainer.innerHTML = `<p class="loading">Cargando personajes ...</p>`;
 }
 
 export function renderError(message) {
