@@ -1,0 +1,1 @@
+// Renderizado en el DOM y estados carga/error
