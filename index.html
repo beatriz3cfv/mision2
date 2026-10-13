@@ -1,25 +1,30 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="stylesheet" href="src/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Misión 2</title>
+    <title>Hogwarts Characters - Async Odyssey</title>
   </head>
   <body>
     <header>
-      <h1>Museo Digital</h1>
-      <p>Explora la colección de obras de arte del Instituto de Arte de Chicago</p>
-  
-      <div class="search-container">
-        <input type="text" id="search-input" placeholder="Busca por obra o artista..."/>
+      <h1>Personajes de Harry Potter</h1>
+      <div class="controls">
+        <input 
+          type="text" 
+          id="search" 
+          placeholder="Busca por nombre (ej. Harry, Hermione...)" 
+          autocomplete="off"
+        />
         <button id="search-btn">Buscar</button>
       </div>
     </header>
 
-    <main id="app"></main>
+    <!-- Contenedor dinámico donde se pintarán la carga, errores o tarjetas -->
+    <main id="app">
+      <!-- Aquí se renderizará el contenido mediante JavaScript -->
+    </main>
 
+    <!-- Script principal de tipo módulo (Vite lo procesará automáticamente) -->
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
