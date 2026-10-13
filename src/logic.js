@@ -20,11 +20,7 @@ export function searchAndFormatCharacters(characters, query) {
             // Vemos si coincide con cualquiera de los campos
             return (
                 name.includes(searchTerm) ||
-                house.includes(searchTerm) ||
-                patronus.includes(searchTerm) ||
-                actor.includes(searchTerm) ||
-                species.includes(searchTerm) ||
-                wandText.includes(searchTerm)
+                house.includes(searchTerm)
             );
         })
         .map(char => ({
