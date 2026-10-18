@@ -1,8 +1,7 @@
-// Lógica de datos pura: no toca el DOM ni la red, así que es fácil de probar y reutilizar.
-
+// Lógica de datos
 const normalize = (text) => (text || '').toLowerCase().trim();
 
-// Filtra por texto (nombre o casa) y, opcionalmente, por una casa concreta.
+// Filtra por texto (nombre o casa)
 export function filterCharacters(characters, { query = '', house = null } = {}) {
     const term = normalize(query);
 
@@ -27,8 +26,7 @@ function formatAlive(alive) {
     return 'Desconocido';
 }
 
-// Convierte un personaje crudo de la API en uno listo para mostrar.
-// La imagen se deja vacía si no hay: decidir el placeholder es cosa de la capa de UI.
+// Formatea los personajes de la API para mostrar.
 export function formatCharacter(char) {
     return {
         id: char.id,
@@ -44,8 +42,7 @@ export function formatCharacter(char) {
     };
 }
 
-// Cuenta personajes por casa con reduce: { Gryffindor: 60, Slytherin: 40, ... }
-// Los personajes sin casa se ignoran.
+// Cuenta personajes por casa: { Gryffindor: 60, Slytherin: 40, ... }, los personajes sin casa se ignoran.
 export function countByHouse(characters) {
     return characters.reduce((counts, char) => {
         if (char.house) {

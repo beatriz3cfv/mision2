@@ -1,5 +1,5 @@
 :root {
-  --house: #5b5b66;       /* color de casa por defecto (personajes sin casa) */
+  --house: #5b5b66;      
   --house-text: #ffffff;
   --parchment: #f6efdc;
   --gold: #e0b84c;
@@ -39,6 +39,7 @@ h1 {
   margin-top: 15px;
 }
 
+/* BÚSQUEDA */
 #search {
   padding: 10px 15px;
   font-size: 1rem;
@@ -72,7 +73,7 @@ h1 {
   cursor: not-allowed;
 }
 
-/* Filtros por casa */
+/* FILTROS POR CASA */
 .filters {
   display: flex;
   flex-wrap: wrap;
@@ -116,7 +117,7 @@ h1 {
   margin: 0 0 15px;
 }
 
-/* Tarjetas */
+/* TARJETAS */
 .grid-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -180,7 +181,7 @@ h1 {
   font-size: 0.8rem;
 }
 
-/* Modal / vista detallada */
+/* MODAL/VISTA DETALLADA DE CARTA */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -261,7 +262,7 @@ h1 {
   font-size: 0.95rem;
 }
 
-/* Mensajes de estado */
+/* MENSAJES DE ESTADOS */
 .initial-message, .loading, .error, .empty {
   text-align: center;
   font-size: 1.1rem;

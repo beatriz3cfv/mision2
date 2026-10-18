@@ -5,13 +5,13 @@ import { filterCharacters, formatCharacter, countByHouse } from './logic.js';
 import * as ui from './ui.js';
 
 const state = {
-    all: [],        // personajes crudos de la API (fuente de verdad)
-    counts: {},     // { casa: nº de personajes }
+    all: [],        // personajes crudos de la API
+    counts: {},     // { casa: n de personajes }
     visible: [],    // resultados actuales, ya formateados
     house: null,    // casa seleccionada en los filtros
 };
 
-// Primero la caché; si no hay (o caducó), se pide a la API y se guarda
+// Caché; si no hay, se pide a la API y se guarda
 async function loadCharacters() {
     const cached = readCache();
     if (cached) return cached;
@@ -22,8 +22,9 @@ async function loadCharacters() {
 }
 
 async function initApp() {
-    ui.setControlsEnabled(false);   // no se puede buscar sin datos
-    ui.renderLoading();             // el loading real: durante la petición real
+    // no se puede buscar sin datos
+    ui.setControlsEnabled(false);   
+    ui.renderLoading();
 
     try {
         state.all = await loadCharacters();
@@ -32,11 +33,11 @@ async function initApp() {
         ui.setControlsEnabled(true);
         showResults();
     } catch (error) {
-        ui.renderError(error.message);  // los controles siguen desactivados
+        // Si los controles siguen desactivados
+        ui.renderError(error.message);  
     }
 }
 
-// Los datos ya están en memoria, así que filtrar es instantáneo: no hace falta "loading"
 function showResults() {
     const query = ui.getQuery();
 
@@ -62,19 +63,13 @@ function toggleHouse(chip) {
     showResults();
 }
 
-// Delegación de eventos: un único listener de click para toda la app.
+// Delegación de eventos
 // Cada elemento declara qué quiere hacer con data-action.
-const actions = {
-    search: showResults,
-    retry: initApp,
-    'toggle-house': toggleHouse,
-    'open-character': openCharacter,
-    'close-modal': ui.closeModal,
-};
+const actions = { search: showResults, retry: initApp, 'toggle-house': toggleHouse, 'open-character': openCharacter, 'close-modal': ui.closeModal };
 
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains('modal-backdrop')) {
-        ui.closeModal();    // clic fuera de la tarjeta
+        ui.closeModal();    // click fuera de la tarjeta
         return;
     }
     const element = event.target.closest('[data-action]');
@@ -85,16 +80,9 @@ document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape') ui.closeModal();
 
     if (event.key === 'Enter' && event.target.id === 'search') showResults();
-
-    // Las tarjetas son role="button": también se abren con teclado
-    if ((event.key === 'Enter' || event.key === ' ') && event.target.matches('.card')) {
-        event.preventDefault();
-        openCharacter(event.target);
-    }
 });
 
-// Si una imagen falla, se cambia por el placeholder. El evento "error" no burbujea,
-// por eso se escucha en fase de captura.
+// Si una imagen falla, se pone el placeholder. No hay event de error
 document.addEventListener('error', (event) => {
     const img = event.target;
     if (img.tagName === 'IMG' && !img.dataset.failed) {

@@ -1,7 +1,7 @@
-// Capa de render: solo construye DOM. Los eventos se gestionan en main.js.
+// Capa de render, construye DOM. Eventos en main
 export const PLACEHOLDER = '/placeholder.webp';
 
-// Se busca el contenedor al usarlo, no al cargar el módulo
+// Se busca el contenedor al usarlo
 const getApp = () => document.querySelector('#app');
 
 // Todo lo que viene de la API se escapa antes de entrar en un innerHTML
@@ -23,17 +23,17 @@ export function setControlsEnabled(enabled) {
 }
 
 export function renderInitialState() {
-    getApp().innerHTML = `<p class="initial-message">🔍 Escribe el nombre o la casa de un personaje, o elige una casa, para empezar.</p>`;
+    getApp().innerHTML = `<p class="initial-message">Escribe el nombre o la casa de un personaje, o elige una casa, para empezar.</p>`;
 }
 
 export function renderLoading() {
-    getApp().innerHTML = `<p class="loading" role="status">⏳ Cargando personajes… la primera vez puede tardar unos segundos.</p>`;
+    getApp().innerHTML = `<p class="loading" role="status">Cargando personajes… la primera vez puede tardar unos segundos.</p>`;
 }
 
 export function renderError(message) {
     getApp().innerHTML = `
         <div class="error" role="alert">
-            <p>❌ Hubo un problema: ${escapeHTML(message)}</p>
+            <p>Hubo un problema: ${escapeHTML(message)}</p>
             <button type="button" class="retry-btn" data-action="retry">Reintentar</button>
         </div>`;
 }

@@ -11,7 +11,7 @@ export function readCache() {
         const isFresh = Date.now() - savedAt < TTL_MS;
         return isFresh && Array.isArray(data) ? data : null;
     } catch {
-        // JSON corrupto o localStorage bloqueado: lo tratamos como "no hay caché"
+        // Json corrupto o localStorage bloqueado, como si no hubiera caché
         return null;
     }
 }
@@ -20,6 +20,6 @@ export function writeCache(data) {
     try {
         localStorage.setItem(CACHE_KEY, JSON.stringify({ savedAt: Date.now(), data }));
     } catch {
-        // Cuota llena o modo privado: la app funciona igual, solo sin caché
+        // Funciona igual, solo sin caché
     }
 }
