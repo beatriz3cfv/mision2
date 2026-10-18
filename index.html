@@ -4,20 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hogwarts Characters - Async Odyssey</title>
-    <link rel="stylesheet" href="/src/styles.css" />
   </head>
   <body>
     <header>
       <h1>Personajes de Harry Potter</h1>
       <div class="controls">
-        <input 
-          type="text" 
-          id="search" 
-          placeholder="Busca por nombre o casa (Harry, Gryffindor...)" 
+        <input
+          type="text"
+          id="search"
+          placeholder="Busca por nombre o casa (Harry, Gryffindor...)"
           autocomplete="off"
+          aria-label="Buscar personaje"
         />
-        <button id="search-btn">Buscar</button>
+        <button type="button" id="search-btn" data-action="search">Buscar</button>
       </div>
+      <div id="house-filters" class="filters" aria-label="Filtrar por casa"></div>
     </header>
 
     <main id="app">
